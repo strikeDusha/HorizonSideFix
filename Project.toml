@@ -1,6 +1,6 @@
-name = "HorizonSideRobots"
-uuid = "d5e94110-5307-4c9c-bf91-3c01b52f9d89"
-authors = ["Виктор Федоров <fdorov@mail.ru>"]
+name = "HorizonSideFix"
+uuid = "e3906e16-c448-40e5-b774-923606885f02"
+authors = ["strikeDusha from mirea with love <3"]
 version = "0.3.1"
 
 [deps]

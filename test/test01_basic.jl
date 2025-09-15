@@ -1,5 +1,5 @@
 module TestBasic
-using HorizonSideRobots
+using HorizonSideFix
 using Test
 
 @testset "Basic tests" begin

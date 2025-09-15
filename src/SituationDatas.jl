@@ -2,7 +2,7 @@
 # Он используется как модуль, вложенный в модуль HorizonSideRobots
 
 module SituationDatas
-    using PyPlot, ...HorizonSideRobots #: HorizonSide
+    using PyPlot, ...HorizonSideFix #: HorizonSide
     export SituationData, draw, save, adjacent_position, is_inner_border, is_inside, sitedit!, handle_button_press_event!, Figure, gcf
 
     BUFF_SITUATION = nothing # инициализируется в draw(...), а затем используется в в handle_button_press_event!(...)
@@ -50,25 +50,29 @@ module SituationDatas
             body_create(sit.coefficient,x,y) # тело - полупрозрачное
         end
         
-        function field_create(axes_size::Tuple{UInt,UInt}, newfig::Bool) 
-        # -- создает пустое поле заданных размеров, разделенное на клетки размером 1х1 каждая
-            rcParams = PyPlot.PyDict(PyPlot.matplotlib."rcParams")
-            rcParams["toolbar"]="None" # - строки toolbar в figure быть не должно
-            rcParams["axes.edgecolor"]=rcParams["figure.facecolor"] # - рамка осей должен не должна быть видимой
-            rcParams["xtick.color"]=rcParams["figure.facecolor"] # - разметка осей не должна быть видимой
-            rcParams["ytick.color"]=rcParams["figure.facecolor"] 
-            rcParams["figure.figsize"]=(7*axes_size[1]/axes_size[2],7-0.2) # - размеры окна задаются с учетом отсутствия toolbar и сучетом фактических размеров клеточного поля (если бы имелся toolbar, то по умолчанию размеры canvas были бы - 7*7 дюймов)
-            if newfig==true
-                figure() # - создается новое окно (пока без координатных осей)
-            else
-                cla() # - очищаются текущие координатные оси (если их не было, то автоматически создаются новые в новом окне)
-            end
-            axis([-DELTA_AXIS_SIZE, axes_size[1]+DELTA_AXIS_SIZE, -DELTA_AXIS_SIZE, axes_size[2]+DELTA_AXIS_SIZE]) # - устанавливаются размеры текущих осей или создаются новые оси в текущем окне
-            xticks(0:axes_size[1]) # - задаются положения координатных линий
-            yticks(0:axes_size[2])
-            grid(true) # - отображаются координатные линии
-            return nothing
-        end # nested function field_create    
+function field_create(axes_size::Tuple{UInt,UInt}, newfig::Bool) 
+    # -- создает пустое поле заданных размеров, разделенное на клетки размером 1х1 каждая
+    # безопасный способ получить rcParams:
+    rcParams = PyPlot.matplotlib[:rcParams]  # вместо PyPlot.matplotlib."rcParams"
+    # работает для новейшей версии матплотлиба на 16 сентября 2025
+    rcParams["toolbar"] = "None" 
+    rcParams["axes.edgecolor"] = rcParams["figure.facecolor"] 
+    rcParams["xtick.color"] = rcParams["figure.facecolor"] 
+    rcParams["ytick.color"] = rcParams["figure.facecolor"] 
+    rcParams["figure.figsize"] = (7*axes_size[1]/axes_size[2], 7-0.2)
+
+    if newfig == true
+        figure()
+    else
+        cla()
+    end
+
+    axis([-DELTA_AXIS_SIZE, axes_size[1]+DELTA_AXIS_SIZE, -DELTA_AXIS_SIZE, axes_size[2]+DELTA_AXIS_SIZE])
+    xticks(0:axes_size[1])
+    yticks(0:axes_size[2])
+    grid(true)
+    return nothing
+    end
 
         get_coordinates(position::Tuple{Integer,Integer})=(position[2]-0.5, sit.frame_size[1]-position[1]+0.5)        
 

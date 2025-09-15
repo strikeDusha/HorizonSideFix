@@ -1,8 +1,8 @@
-# HorizonSideRobots.jl
+# HorizonSideFix.jl
 
 # DATE: 2020 09 12 15-03
 
-module HorizonSideRobots # "Робот на клетчатом поле со сторонами горизонта"
+module HorizonSideFix # "Робот на клетчатом поле со сторонами горизонта"
 
 export HorizonSide, Nord, Sud, West, Ost, Robot, move!, isborder, putmarker!, ismarker, temperature, 
 show, show!, save, sitedit, sitedit!, sitcreate
@@ -65,7 +65,7 @@ end
 
 -- Перемещает Робота в соседнюю клетку в заданном направлении (если только на пути нет перегoродки, в противном случае - прерывание)
 """
-function move!(r::Robot, side::HorizonSideRobots.HorizonSide)
+function move!(r::Robot, side::HorizonSideFix.HorizonSide)
     if isborder(r,side)==true   
         error("Робот врезался в перегородку при попытке сделать шаг в направлении $(side)") 
     end
@@ -82,7 +82,7 @@ end
 
 -- Проверяет наличие перегородки в заданном направлении
 """
-function isborder(r::Robot,side::HorizonSideRobots.HorizonSide)::Bool
+function isborder(r::Robot,side::HorizonSideFix.HorizonSide)::Bool
     i,j = position(r)
     imax,jmax = r.situation.frame_size
     if (i<1 && j<1)||(i<1 && j>jmax)||(i>imax && j>jmax)||(i>imax && j<1) # - (i,j) - за пределами фрейма (в угловых секторах)
@@ -231,4 +231,4 @@ end
 is_inside(r::Robot) = SituationDatas.is_inside(r.situation) # - проверяет, находится ли Робот в фрейме (в наблюдаемой части поля)
 position(r::Robot) = r.situation.robot_position # - возвращает текущую позицию Робота, т.е. - пару индексов (i,j)
 
-end # module HorizonSideRobots
+end # module HorizonSideFix
