@@ -1,9 +1,30 @@
 # РОБОТ НА КЛЕТЧАТОМ ПОЛЕ СО СТОРОНАМИ ГОРИЗОНТА
 
+
+
 [![Documentation](https://img.shields.io/badge/docs-dev-blue.svg)](https://Vibof.github.io/HorizonSideRobots.jl/dev)
 [![Build Status](https://github.com/Vibof/HorizonSideRobots.jl/workflows/CI/badge.svg)](https://github.com/Vibof/HorizonSideRobots.jl/actions)
 [![Coverage](https://codecov.io/gh/Vibof/HorizonSideRobots.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/Vibof/HorizonSideRobots.jl)
 
+# Исправление ошибки с анимацией
+
+Это пакет `HorizonSideFix`, который исправляет ошибки с новой  версией библиотеки, которые не совместимы со старой кодовой базой 
+В остальном это тот же [HorizonSideRobots](https://github.com/Vibof/HorizonSideRobots.jl) в своей логике, но лишь с исправлением ошибок несовместимости
+# Установка 
+Такая же простая как и оригинальный пакет
+показывать буду на примере macOS, но те же комманды справедливы и на других системах
+Вводим слово `julia` в терминал
+![julia](image1.png)
+Нажимаем на `]` для открытия пакетного менеджера 
+Пишем там `add https://github.com/strikeDusha/HorizonSideFix`
+![julia](image2.png)
+Выходим из меню пакетного менеджера (через Ctrl + C например)
+и пишем `using HorizonSiteFix`
+> ⚠️Важно!⚠️ Что бы все работало, **везде** где должно быть **HorizonSideRobots** пишите **HorizonSideFix**
+>В остальном различий между пакетами нет 
+
+дальше делаем что хотим, ведь **animate = true** работает!
+**помогло - поставь звезду**
 ![Пример обстановки на поле](docs/src/extra/for_readme.png)
 
 Данное ПО предназначено для поддержки начального курса программирования для студентов-первокурсников, целью которого является научить писать хорошо структурированный программный код, основываясь на технологии проектирования сверху вниз и включая использование идей обобщенного программирования. Оно помогает легко формулировать учебные задачи, сложность которых можно варьировать в достаточно широких пределах, и на которых можно научить/научиться всему заявленному, по крайней мере, в некотором приближении.
