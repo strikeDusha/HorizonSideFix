@@ -19,7 +19,7 @@
 Пишем там  `add https://github.com/strikeDusha/HorizonSideFix`  
 ![julia](image2.png) 
 Выходим из меню пакетного менеджера (через Ctrl + C например)  
-и пишем `using HorizonSiteFix` 
+и пишем `using HorizonSideFix` 
 > ⚠️Важно!⚠️ Что бы все работало, **везде** где должно быть **HorizonSideRobots** пишите **HorizonSideFix**
 >В остальном различий между пакетами нет 
 
